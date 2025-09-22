@@ -13,22 +13,18 @@ export default defineConfig({
     cssCodeSplit: true,
     cssMinify: 'esbuild',
     target: ['es2020'],
-    // 新增代码拆分配置
+    // 简化的代码拆分配置
     rollupOptions: {
       output: {
         manualChunks(id) {
-          // 将第三方库拆分为独立chunk
+          // 简化的代码拆分策略
           if (id.includes('node_modules')) {
-            if (id.includes('antd')) {
-              return 'vendor.antd';
-            } else if (id.includes('react') || id.includes('react-dom')) {
-              return 'vendor.react';
-            } else if (id.includes('@reduxjs')) {
-              return 'vendor.redux';
-            } else if (id.includes('exceljs')) {
+            // 只拆分大型库
+            if (id.includes('exceljs')) {
               return 'vendor.exceljs';
             }
-            return 'vendor.other';
+            // 其他所有依赖都放在一个vendor chunk中以确保加载顺序
+            return 'vendor';
           }
         }
       }
