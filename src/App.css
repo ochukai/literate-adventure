@@ -1,0 +1,12 @@
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.ant-layout-header {
+  padding: 0 24px;
+}
+
+.ant-layout-content {
+  min-height: 280px;
+}
