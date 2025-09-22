@@ -66,6 +66,8 @@ function Students() {
   const handleAdd = () => {
     setEditingId(null);
     form.resetFields();
+    // 设置默认性别为男
+    form.setFieldsValue({ gender: 'male' });
     setIsModalVisible(true);
   };
 

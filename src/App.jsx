@@ -1,14 +1,15 @@
-import { Layout, Menu } from 'antd';
-import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
 import { HomeOutlined, UserOutlined, TeamOutlined, CalendarOutlined, UploadOutlined } from '@ant-design/icons';
+import { Layout, Menu, Spin } from 'antd';
 import './App.css';
 
-// 导入页面组件
-import Home from './pages/Home';
-import Students from './pages/Students';
-import Teachers from './pages/Teachers';
-import Schedule from './pages/Schedule';
-import DataImport from './pages/DataImport';
+// 使用React.lazy进行组件懒加载
+const Home = lazy(() => import('./pages/Home'));
+const Students = lazy(() => import('./pages/Students'));
+const Teachers = lazy(() => import('./pages/Teachers'));
+const Schedule = lazy(() => import('./pages/Schedule'));
+const DataImport = lazy(() => import('./pages/DataImport'));
 
 const { Header, Content, Sider } = Layout;
 
@@ -51,11 +52,13 @@ function AppLayout() {
             background: '#fff',
             borderRadius: '4px'
           }}>
-            <Routes>
-              {Object.entries(routeMap).map(([path, element]) => (
-                <Route key={path} path={path} element={element} />
-              ))}
-            </Routes>
+            <Suspense fallback={<div style={{ textAlign: 'center', padding: '50px 0' }}><Spin size="large" tip="加载中..." /></div>}>
+              <Routes>
+                {Object.entries(routeMap).map(([path, element]) => (
+                  <Route key={path} path={path} element={element} />
+                ))}
+              </Routes>
+            </Suspense>
           </Content>
         </Layout>
       </Layout>

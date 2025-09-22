@@ -383,8 +383,8 @@ function Schedule() {
           )}
         </TabPane>
 
-        {/* 原始课表标签页 */}
-        <TabPane tab="原始课表" key="3">
+        {/* 学生课表标签页 */}
+        <TabPane tab="学生课表" key="3">
           {teachers.length === 0 ? (
             <div style={{ color: "#888", marginTop: 32, fontSize: 18 }}>
               当前没有老师，无法排课，请先添加老师。
