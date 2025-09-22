@@ -1,5 +1,5 @@
 import { Layout, Menu } from 'antd';
-import { HashRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { HomeOutlined, UserOutlined, TeamOutlined, CalendarOutlined, UploadOutlined } from '@ant-design/icons';
 import './App.css';
 
